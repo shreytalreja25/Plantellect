@@ -12,11 +12,11 @@ const features = [
 
 const FeaturesSection = () => {
   return (
-    <section id="features" className="py-5 bg-white">
-      <div className="container text-center">
-        <h2 className="text-success fw-bold">Key Features</h2>
-        <p className="text-muted">Explore how Plantellect makes gardening smarter.</p>
-        <div className="row mt-4">
+    <section className="features-section">
+      <div className="container">
+        <h2 className="text-success fw-bold text-center mb-4">Key Features</h2>
+        <p className="text-muted text-center mb-5">Explore how Plantellect makes gardening smarter.</p>
+        <div className="row g-4">
           {features.map((feature, index) => (
             <FeatureCard key={index} icon={feature.icon} title={feature.title} description={feature.description} />
           ))}

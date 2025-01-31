@@ -1,5 +1,355 @@
-/* Add this in index.css */
+/* Ensure body has correct padding for fixed header/footer */
+
+/* Default light mode */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #212529;
+  --navbar-color: #2e7d32;
+  --card-bg: #f8f9fa;
+  --muted-text: #6c757d;
+  --section-bg: #ffffff;
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --navbar-color: #1b5e20;
+  --card-bg: #1e1e1e;
+  --muted-text: #a0a0a0;
+  --section-bg: #1a1a1a;
+}
+
 body {
-  padding-top: 56px;  /* Adjust based on header height */
-  padding-bottom: 50px; /* Adjust based on footer height */
+  margin: 0;
+  min-height: 100vh;
+  padding-top: 56px;
+  overflow-x: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px; /* Vertical scrollbar width */
+  height: 6px; /* Horizontal scrollbar height */
+}
+
+/* Scrollbar Track */
+::-webkit-scrollbar-track {
+  background: #e8f5e9; /* Light green background */
+  border-radius: 10px;
+}
+
+/* Scrollbar Handle */
+::-webkit-scrollbar-thumb {
+  background: #2e7d32; /* Dark green thumb */
+  border-radius: 10px;
+  transition: background 0.3s ease-in-out;
+}
+
+/* Scrollbar Handle on Hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #1b5e20; /* Darker green on hover */
+}
+
+
+
+/* Section backgrounds */
+section {
+  background-color: var(--section-bg);
+  margin: 0 !important;
+  width: 100%;
+}
+
+/* Text styles */
+.text-muted,
+p.text-muted,
+.text-muted span,
+div.text-muted {
+  color: var(--muted-text) !important;
+}
+
+.lead {
+  color: var(--text-color) !important;
+}
+
+/* Cards */
+.card {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border: none !important;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card .card-title {
+  color: var(--text-color) !important;
+}
+
+.card .card-text {
+  color: var(--muted-text) !important;
+}
+
+.card.border-success {
+  border: 1px solid var(--navbar-color) !important;
+}
+
+/* Navbar color */
+.navbar {
+  background-color: var(--navbar-color) !important;
+}
+
+/* Hero Section */
+.hero {
+  min-height: calc(100vh - 56px);
+  padding: 4rem 1rem !important;
+  background-color: var(--section-bg);
+  margin-top: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero h1 {
+  font-size: calc(2rem + 2vw);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.hero .lead {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  font-size: calc(1rem + 0.5vw);
+  opacity: 0.9;
+}
+
+/* Features Section */
+.features-section {
+  padding: 3rem 1rem !important;
+  background-color: var(--section-bg);
+}
+
+/* App Showcase Section */
+.app-showcase {
+  padding: 3rem 1rem !important;
+  background-color: var(--section-bg);
+}
+
+.app-showcase h2 {
+  font-size: calc(1.8rem + 1vw);
+  line-height: 1.2;
+}
+
+.app-showcase .lead {
+  font-size: calc(1rem + 0.3vw);
+}
+
+/* Feature Items */
+.feature-item {
+  display: flex;
+  align-items: center;
+  font-size: calc(0.9rem + 0.2vw);
+  margin-bottom: 0.5rem;
+}
+
+.feature-item span {
+  color: var(--text-color) !important;
+}
+
+.features-list {
+  max-width: 500px;
+}
+
+/* App Showcase Features */
+.app-showcase .feature-item span {
+  color: var(--text-color) !important;
+}
+
+.app-showcase .features-list {
+  margin: 0 auto;
+}
+
+.app-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.app-buttons .btn {
+  min-width: 200px;
+  margin: 0 !important;
+}
+
+/* Card Styles */
+.card {
+  height: 100%;
+  margin-bottom: 1rem;
+  padding: 1.5rem 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hero {
+    min-height: calc(100vh - 56px);
+    padding: 3rem 1rem !important;
+  }
+
+  .hero h1 {
+    font-size: calc(1.8rem + 1vw);
+  }
+
+  .hero .lead {
+    font-size: calc(1rem + 0.2vw);
+  }
+
+  .features-section .card {
+    margin-bottom: 1.5rem;
+  }
+
+  .app-showcase .text-lg-start {
+    text-align: center !important;
+  }
+
+  .features-list {
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .feature-item {
+    justify-content: flex-start;
+    padding-left: 1rem;
+  }
+
+  .mockup-placeholder {
+    margin-top: 2rem;
+    padding: 2rem;
+  }
+
+  body {
+    padding-bottom: 0 !important;
+  }
+}
+
+/* Footer Responsive Adjustments */
+@media (max-width: 767.98px) {
+  .footer {
+    padding: 2rem 1rem !important;
+  }
+
+  .footer .row > div {
+    margin-bottom: 1.5rem;
+  }
+
+  .footer .row > div:last-child {
+    margin-bottom: 0;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .footer-links a {
+    margin: 0 !important;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .social-links a {
+    margin: 0 !important;
+  }
+
+  body {
+    padding-bottom: 0 !important;
+  }
+}
+
+/* Footer Styles */
+.footer {
+  background-color: var(--navbar-color) !important;
+  flex-shrink: 0;
+}
+
+.footer .social-links a {
+  transition: opacity 0.3s ease;
+  opacity: 0.8;
+}
+
+.footer .social-links a:hover {
+  opacity: 1;
+}
+
+.footer-links a {
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+  opacity: 1;
+}
+
+/* Container for all main content */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color);
+}
+
+/* Auth Pages */
+.auth-section {
+  min-height: calc(100vh - 56px);
+  padding: 4rem 1rem;
+  margin-top: 56px;
+  display: flex;
+  align-items: center;
+  background-color: var(--section-bg);
+}
+
+.auth-card {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.auth-card .form-control {
+  background-color: var(--bg-color);
+  border-color: var(--muted-text);
+  color: var(--text-color);
+}
+
+.auth-card .form-control:focus {
+  background-color: var(--bg-color);
+  border-color: var(--navbar-color);
+  color: var(--text-color);
+  box-shadow: 0 0 0 0.25rem rgba(46, 125, 50, 0.25);
+}
+
+.auth-card .form-label {
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .auth-section {
+    padding: 2rem 1rem;
+  }
+}
+
+/* Main content wrapper */
+.main-content {
+  flex: 1 0 auto;
 }
