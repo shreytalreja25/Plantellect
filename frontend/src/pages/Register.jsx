@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { User, Mail, Lock } from "lucide-react";
+import { useAuth } from '../context/AuthContext';
 
 const Register = () => {
+  const { register } = useAuth();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -10,10 +13,15 @@ const Register = () => {
     confirmPassword: "",
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add registration logic here
-    console.log("Registration attempt:", formData);
+    try {
+      await register(formData);
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('Registration failed:', error);
+      // Add error handling UI
+    }
   };
 
   const handleChange = (e) => {

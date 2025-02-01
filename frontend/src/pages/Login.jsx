@@ -1,17 +1,25 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Mail, Lock } from "lucide-react";
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add login logic here
-    console.log("Login attempt:", formData);
+    try {
+      await login(formData.email, formData.password);
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('Login failed:', error);
+      // Add error handling UI
+    }
   };
 
   const handleChange = (e) => {

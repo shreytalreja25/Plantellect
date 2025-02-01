@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Leaf, Home, Info, Mail, Sun, Moon, LogIn, UserPlus } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Leaf, Home, Info, Mail, Sun, Moon, LogIn, UserPlus, LogOut, LayoutDashboard } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
 
 const Header = () => {
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("theme") === "dark"
   );
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   // Apply theme on mount and when darkMode changes
   useEffect(() => {
@@ -17,6 +20,11 @@ const Header = () => {
   // Toggle theme
   const toggleTheme = () => {
     setDarkMode(!darkMode);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
   };
 
   return (
@@ -45,12 +53,28 @@ const Header = () => {
           </li>
         </ul>
         <div className="d-flex align-items-center ms-3">
-          <Link to="/login" className="btn btn-outline-light me-2">
-            <LogIn size={18} className="me-1" /> Login
-          </Link>
-          <Link to="/register" className="btn btn-outline-light me-3">
-            <UserPlus size={18} className="me-1" /> Register
-          </Link>
+          {user ? (
+            <>
+              <Link to="/dashboard" className="btn btn-outline-light me-2">
+                <LayoutDashboard size={18} className="me-1" /> Dashboard
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="btn btn-outline-light me-3"
+              >
+                <LogOut size={18} className="me-1" /> Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="btn btn-outline-light me-2">
+                <LogIn size={18} className="me-1" /> Login
+              </Link>
+              <Link to="/register" className="btn btn-outline-light me-3">
+                <UserPlus size={18} className="me-1" /> Register
+              </Link>
+            </>
+          )}
           <button
             className="btn btn-outline-light d-flex align-items-center"
             onClick={toggleTheme}
